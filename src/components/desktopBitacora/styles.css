@@ -1,10 +1,43 @@
-body
-{
-    border: 8px solid blue;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom:0;
-    left: 0;
-    overflow: auto;
+
+header {
+    background-color: #666;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: white; 
 }
+
+section {
+    display: -webkit-flex;
+    display: flex;
+    height: -webkit-fill-available;
+  }
+
+nav {
+    /* -webkit-flex: 1; */
+    /* -ms-flex: 1; */
+    flex: 0.3;
+    background: #ccc;
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+article {
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    background-color: #f1f1f1;
+    padding: 10px;
+}
+
+@media (max-width: 600px) {
+    section {
+      -webkit-flex-direction: column;
+      flex-direction: column;
+    }
+  }
+
