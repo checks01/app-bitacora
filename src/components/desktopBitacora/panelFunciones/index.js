@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../styles/panelFunciones.css'
+import './styles.css'
 
 export default class PanelFunciones extends Component {
     render() {

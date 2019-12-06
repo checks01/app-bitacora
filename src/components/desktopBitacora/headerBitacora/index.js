@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import '../styles/headerBitacora.css'
+import './styles.css'
 
 export default class HeaderBitacora extends Component {
     render() {
