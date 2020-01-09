@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import clsx from 'clsx';
 import MenuIcon from '@material-ui/icons/Menu';
+import PanelPantalla from './panelPantalla';
 
 const drawerWidth = 240;
 
@@ -33,10 +34,11 @@ const useStyles = makeStyles(theme => ({
     },
     hide: {
         display: 'none',
-    },
+    }
 }));
 
-export default function HeaderBitacora({ open, fnExpandeColapsaMenu }) {
+
+export default function HeaderBitacora({ open, fnExpandeColapsaMenu, funcion }) {
     const classes = useStyles();
 
     const handleDrawerOpen = () => {
@@ -45,7 +47,7 @@ export default function HeaderBitacora({ open, fnExpandeColapsaMenu }) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" >
+            <AppBar position="fixed" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -64,6 +66,8 @@ export default function HeaderBitacora({ open, fnExpandeColapsaMenu }) {
                     <div color="inherit"> Salir </div>
                 </Toolbar>
             </AppBar>
+            <PanelPantalla open={open} funcion={funcion}>
+            </PanelPantalla>
         </div>
     );
 }

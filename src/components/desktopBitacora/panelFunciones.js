@@ -12,6 +12,12 @@ import Drawer from '@material-ui/core/Drawer';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import Collapse from '@material-ui/core/Collapse';
+import BINF001 from './../../routes/BINF001/BINF001';
+import BINF002 from './../../routes/BINF002/BINF002';
+import BINF003 from './../../routes/BINF003/BINF003';
+import BINF004 from './../../routes/BINF004/BINF004';
+import BINF005 from './../../routes/BINF005/BINF005';
+import BINF006 from './../../routes/BINF006/BINF006';
 
 const drawerWidth = 240;
 
@@ -46,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function PanelFunciones({ open, fnExpandeColapsaMenu }) {
+export default function PanelFunciones({ open, fnExpandeColapsaMenu, fnSetFuncion }) {
     const classes = useStyles();
     const theme = useTheme();
     const funciones = [
@@ -64,8 +70,33 @@ export default function PanelFunciones({ open, fnExpandeColapsaMenu }) {
 
     const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-    const handleListItemClick = (event, index) => {
+    const handleListItemClick = (event, index, cveFuncion) => {
         setSelectedIndex(index);
+        console.log(cveFuncion);
+        switch (cveFuncion) {
+            case "BINF001":
+                fnSetFuncion(<BINF001 />);
+                break;
+            case "BINF002":
+                fnSetFuncion(<BINF002 />);
+                break;
+            case "BINF003":
+                fnSetFuncion(<BINF003 />);
+                break;
+            case "BINF004":
+                fnSetFuncion(<BINF004 />);
+                break;
+            case "BINF005":
+                fnSetFuncion(<BINF005 />);
+                break;
+            case "BINF006":
+                fnSetFuncion(<BINF006 />);
+                break;
+            default:
+                fnSetFuncion(null);
+                break;
+        }
+        fnExpandeColapsaMenu(true);
     };
 
     const [valor, expandCollapse] = React.useState(true);
@@ -112,7 +143,7 @@ export default function PanelFunciones({ open, fnExpandeColapsaMenu }) {
 
                                     <ListItem key={`item-${item.cveFuncion}`}
                                         selected={selectedIndex === index}
-                                        onClick={event => handleListItemClick(event, index)}
+                                        onClick={event => handleListItemClick(event, index, item.cveFuncion)}
                                     >
                                         <ListItemText primary={`${item.cveFuncion} - ${item.descripcion}`} />
                                     </ListItem>

@@ -30,14 +30,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function PanelPantalla({ open, funcion }) {
+export default function BINF003({ open }) {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <main className={clsx(classes.content, open && classes.appBarShift2)}>
                 <div className={clsx(classes.appBarSpacer, open && classes.appBarShift2)} />
                 <Container maxWidth="lg" className={clsx(classes.container, open && classes.appBarShift2)} >
-                    {funcion}
+                    BINF003
                 </Container>
             </main>
         </div>
