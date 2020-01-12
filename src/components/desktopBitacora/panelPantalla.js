@@ -4,15 +4,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Container from '@material-ui/core/Container';
 
-const drawerWidth = 240;
-
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        width: '100%',
     },
-    appBarShift2: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
+    appBarShift: {
+        width: '100%',
+        marginLeft: 120,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -21,22 +20,21 @@ const useStyles = makeStyles(theme => ({
     appBarSpacer: theme.mixins.toolbar,
     content: {
         flexGrow: 1,
-        height: '100vh',
-        overflow: 'auto',
+        height: '100vh'
     },
     container: {
         paddingTop: theme.spacing(4),
-        paddingBottom: theme.spacing(4),
+        paddingBottom: theme.spacing(4)
     }
 }));
 
 export default function PanelPantalla({ open, funcion }) {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <main className={clsx(classes.content, open && classes.appBarShift2)}>
-                <div className={clsx(classes.appBarSpacer, open && classes.appBarShift2)} />
-                <Container maxWidth="lg" className={clsx(classes.container, open && classes.appBarShift2)} >
+        <div id='divRoot' className={clsx(classes.root, open && classes.appBarShift)}>
+            <main id='mainContent' className={clsx(classes.content, open && classes.appBarShift)}>
+                <div id= 'divAppBarSpacer' className={classes.appBarSpacer} />
+                <Container id= 'containerPantalla' className={clsx(classes.container, open)} >
                     {funcion}
                 </Container>
             </main>

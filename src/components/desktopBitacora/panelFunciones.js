@@ -18,6 +18,7 @@ import BINF003 from './../../routes/BINF003/BINF003';
 import BINF004 from './../../routes/BINF004/BINF004';
 import BINF005 from './../../routes/BINF005/BINF005';
 import BINF006 from './../../routes/BINF006/BINF006';
+import BINF007 from './../../routes/BINF007/BINF007';
 
 const drawerWidth = 240;
 
@@ -56,19 +57,20 @@ export default function PanelFunciones({ open, fnExpandeColapsaMenu, fnSetFuncio
     const classes = useStyles();
     const theme = useTheme();
     const funciones = [
-        { cveFuncion: 'BINF001', descripcion: 'Valida scripts' },
-        { cveFuncion: 'BINF002', descripcion: 'Carga paquete' },
-        { cveFuncion: 'BINF003', descripcion: 'Seguimiento de paquetes' },
-        { cveFuncion: 'BINF004', descripcion: 'Consulta bitacora' },
-        { cveFuncion: 'BINF005', descripcion: 'Mantenimiento pipeline' },
-        { cveFuncion: 'BINF006', descripcion: 'Reportes' },
+        { cveFuncion: 'BINF001', descripcion: 'Catálogo de usuarios' },
+        { cveFuncion: 'BINF002', descripcion: 'Valida scripts' },
+        { cveFuncion: 'BINF003', descripcion: 'Carga paquete' },
+        { cveFuncion: 'BINF004', descripcion: 'Seguimiento de paquetes' },
+        { cveFuncion: 'BINF005', descripcion: 'Consulta bitacora' },
+        { cveFuncion: 'BINF006', descripcion: 'Mantenimiento pipeline' },
+        { cveFuncion: 'BINF007', descripcion: 'Reportes' }
     ];
 
     const handleDrawerClose = () => {
         fnExpandeColapsaMenu(false);
     };
 
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(-1);
 
     const handleListItemClick = (event, index, cveFuncion) => {
         setSelectedIndex(index);
@@ -91,6 +93,9 @@ export default function PanelFunciones({ open, fnExpandeColapsaMenu, fnSetFuncio
                 break;
             case "BINF006":
                 fnSetFuncion(<BINF006 />);
+                break;
+            case "BINF007":
+                fnSetFuncion(<BINF007 />);
                 break;
             default:
                 fnSetFuncion(null);

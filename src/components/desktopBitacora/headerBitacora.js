@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
     },
     appBar: {
+        width: '100%',
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
@@ -47,7 +48,7 @@ export default function HeaderBitacora({ open, fnExpandeColapsaMenu, funcion }) 
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed" className={clsx(classes.appBar, open && classes.appBarShift)}>
+            <AppBar position="fixed">
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -66,7 +67,7 @@ export default function HeaderBitacora({ open, fnExpandeColapsaMenu, funcion }) 
                     <div color="inherit"> Salir </div>
                 </Toolbar>
             </AppBar>
-            <PanelPantalla open={open} funcion={funcion}>
+            <PanelPantalla  open={open} funcion={funcion}>
             </PanelPantalla>
         </div>
     );
