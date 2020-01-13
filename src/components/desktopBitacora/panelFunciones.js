@@ -19,6 +19,7 @@ import BINF004 from './../../routes/BINF004/BINF004';
 import BINF005 from './../../routes/BINF005/BINF005';
 import BINF006 from './../../routes/BINF006/BINF006';
 import BINF007 from './../../routes/BINF007/BINF007';
+import BINF008 from './../../routes/BINF008/BINF008';
 
 const drawerWidth = 240;
 
@@ -58,12 +59,13 @@ export default function PanelFunciones({ open, fnExpandeColapsaMenu, fnSetFuncio
     const theme = useTheme();
     const funciones = [
         { cveFuncion: 'BINF001', descripcion: 'Catálogo de usuarios' },
-        { cveFuncion: 'BINF002', descripcion: 'Valida scripts' },
-        { cveFuncion: 'BINF003', descripcion: 'Carga paquete' },
-        { cveFuncion: 'BINF004', descripcion: 'Seguimiento de paquetes' },
-        { cveFuncion: 'BINF005', descripcion: 'Consulta bitacora' },
-        { cveFuncion: 'BINF006', descripcion: 'Mantenimiento pipeline' },
-        { cveFuncion: 'BINF007', descripcion: 'Reportes' }
+        { cveFuncion: 'BINF002', descripcion: 'Catálogo de funciones' },
+        { cveFuncion: 'BINF003', descripcion: 'Valida scripts' },
+        { cveFuncion: 'BINF004', descripcion: 'Carga paquete' },
+        { cveFuncion: 'BINF005', descripcion: 'Seguimiento de paquetes' },
+        { cveFuncion: 'BINF006', descripcion: 'Consulta bitacora' },
+        { cveFuncion: 'BINF007', descripcion: 'Mantenimiento pipeline' },
+        { cveFuncion: 'BINF008', descripcion: 'Reportes' }
     ];
 
     const handleDrawerClose = () => {
@@ -96,6 +98,9 @@ export default function PanelFunciones({ open, fnExpandeColapsaMenu, fnSetFuncio
                 break;
             case "BINF007":
                 fnSetFuncion(<BINF007 />);
+                break;
+            case "BINF008":
+                fnSetFuncion(<BINF008 />);
                 break;
             default:
                 fnSetFuncion(null);

@@ -1,10 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
-import Container from '@material-ui/core/Container';
-import { Grid } from '@material-ui/core'
-import SelectionGrid from './SelectionGrid'
+import BINF002Grid from './BINF002Grid';
 
 const drawerWidth = 240;
 
@@ -35,21 +32,6 @@ const useStyles = makeStyles(theme => ({
 export default function BINF002({ open }) {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <main className={clsx(classes.content, open && classes.appBarShift2)}>
-                <div className={clsx(classes.appBarSpacer, open && classes.appBarShift2)} />
-                <Container maxWidth="lg" className={clsx(classes.container, open && classes.appBarShift2)} >
-                    <Grid container spacing={3} alignItems='flex-end'>
-                        <Grid item xs={12}>
-                            <SelectionGrid> </SelectionGrid> 
-                        </Grid>
-                        <Grid item alignItems='flex-end'>
-                            <SelectionGrid> </SelectionGrid>
-                        </Grid>
-
-                    </Grid>
-                </Container>
-            </main>
-        </div>
+        <BINF002Grid />
     );
 }
