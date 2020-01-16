@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
+import { formateaFecha } from '../../utils/FormUtil';
 
 export default function BINF001Grid() {
-  const [state, setState] = React.useState({
+  const [state] = React.useState({
     columns: [
       { title: 'ID usuario', field: 'idUsuario', hidden: true },
       { title: 'Clave usuario', field: 'cveUsuario' },
@@ -18,20 +19,17 @@ export default function BINF001Grid() {
       { title: 'Usuario', field: 'usuario', editable: false },
       { title: 'Fecha actualización', field: 'fechaActualizacion', editable: false }
     ],
-    data: [],
+    data: []
   });
 
   class BINF001Grid extends Component {
     constructor(props) {
       super(props);
-      this.state = { state };
     }
 
     componentDidMount() {
-      console.log("peticion")
       axios.get('http://localhost:8085/usuarios')
         .then(response => {
-          console.log('respuesta')
           state.data = response.data._embedded.usuarioses;
           this.setState({ state });
         })
@@ -50,13 +48,19 @@ export default function BINF001Grid() {
               new Promise(resolve => {
                 setTimeout(() => {
                   resolve();
-                  setState(prevState => {
-                    const data = [...prevState.data];
-                    console.log('datos previos: ' + data);
-                    data.push(newData);
-                    console.log('nuevos datos: ' + newData)
-                    return { ...prevState, data };
-                  });
+                  newData.usuario = 'SYS';
+                  newData.fechaActualizacion = formateaFecha(new Date());
+                  axios.post('http://localhost:8085/usuarios', newData)
+                    .then(response => {
+                      axios.get('http://localhost:8085/usuarios')
+                        .then(response => {
+                          state.data = response.data._embedded.usuarioses;
+                          this.setState({ state });
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        })
+                    });
                 }, 600);
               }),
             onRowUpdate: (newData, oldData) =>
@@ -64,11 +68,19 @@ export default function BINF001Grid() {
                 setTimeout(() => {
                   resolve();
                   if (oldData) {
-                    setState(prevState => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
+                    newData.usuario = 'SYS';
+                    newData.fechaActualizacion = formateaFecha(new Date());
+                    axios.put(newData._links.self.href, newData)
+                      .then(response => {
+                        axios.get('http://localhost:8085/usuarios')
+                          .then(response => {
+                            state.data = response.data._embedded.usuarioses;
+                            this.setState({ state });
+                          })
+                          .catch(function (error) {
+                            console.log(error);
+                          })
+                      });
                   }
                 }, 600);
               }),
@@ -76,11 +88,17 @@ export default function BINF001Grid() {
               new Promise(resolve => {
                 setTimeout(() => {
                   resolve();
-                  setState(prevState => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
+                  axios.delete(oldData._links.self.href)
+                    .then(response => {
+                      axios.get('http://localhost:8085/usuarios')
+                        .then(response => {
+                          state.data = response.data._embedded.usuarioses;
+                          this.setState({ state });
+                        })
+                        .catch(function (error) {
+                          console.log(error);
+                        })
+                    });
                 }, 600);
               }),
           }}
